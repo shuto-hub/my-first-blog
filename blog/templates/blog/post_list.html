@@ -1,22 +1,21 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. こんにちは！ よろしくお願いします！ </p>
+{% block content %}
+  {% for post in posts %}
+  <article class="box media">
+    <figure class="media-left">
+      <p class="image is-64x64">
+        <img src="http://placehold.it/128x128">
+      </p>
+    </figure>
+      <div class="media-content">
+        <div class="content">
+          <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            {{ post.text|linebreaksbr }}<br>
+              <small><a>Like</a> · <a>Reply</a> 投稿日: {{ post.published_date }}</small>
+            </p>
         </div>
-
-        <div>
-            <p>公開日: 2014/06/14, 12:14</p>
-            <h2><a href="">2番目の投稿</a></h2>
-            <p> こんにちは！ よろしくお願いします！ </p>
-        </div>
-    </body>
-</html>
+      </div>
+  </article>
+  {% endfor %}
+{% endblock %}

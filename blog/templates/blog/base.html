@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Djangoポートフォリオサイト(ビューフレームワーク:BULMA)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  </head>
+  <body>
+    <header class="nav">
+      <div class="nav-left">
+          <span class="nav-item">
+              <span class="fa fa-file"></span>　Report review App
+          </span>
+      </div>
+      <div class="nav-right">
+        <span class="nav-item">
+          <div class="control has-addons">
+            <input class="input" type="search" name="search" placeholder="キーワード検索">
+            <a class="button is-info"><i class="fa fa-search"></i>検索</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a href="#" class="fa fa-user">ログイン</a>
+        </span>
+      </div>
+    </header>
+    <div class="hero is-info is-bold">
+      <div class="hero-body">
+          <div class="container">
+            <h1 class="title">Portfolio</h1>
+            <h2 class="subtitle">@shuto</h2>
+          </div>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
