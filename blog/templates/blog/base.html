@@ -22,6 +22,9 @@
         </span>
         <span class="nav-item">
           <a href="#" class="fa fa-user">ログイン</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>投稿</a>
+          {% endif %}
         </span>
       </div>
     </header>
