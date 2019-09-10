@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+user.username（名前） : {{ user.username }}<hr>
+user.is_staff(/adminにログインできるか) : {{ user.is_staff }}<hr>
+user.is_active(アカウントはアクティブか、通常のログインはできるか) : {{ user.is_active }}<hr>
+user.is_superuser（すうぱあゆうざあ　ですか） : {{ user.is_superuser }}<hr>
+user.last_login(最期のログイン) : {{ user.last_login }}<hr>
+user.date_joined（アカウントの作られた日） : {{ user.date_joined }}
+
+<p>あなたの投稿一覧</p>
+{% for post in posts %}
+<article class="box media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="http://placehold.it/128x128">
+    </p>
+  </figure>
+    <div class="media-content">
+      <div class="content">
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+          {{ post.text|linebreaksbr }}<br>
+            <small><a>{{ post.author }}</a> · <a>Reply</a>投稿日: {{ post.published_date }}</small>
+            {% if post.author == request.user %}
+            <a class="btn" href="{% url 'post_edit' pk=post.pk %}"><span class="fa fa-edit"></span></a>
+            {% endif %}
+          </p>
+      </div>
+    </div>
+</article>
+{% endfor %}
+
+{% endblock %}

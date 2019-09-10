@@ -1,0 +1,12 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<h1>Sign in</h1>
+<section class="common-form">
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="submit">Log in</button>
+</form>
+</section>
+{% endblock %}

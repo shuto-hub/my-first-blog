@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+{% load widget_tweaks %}
   {% for post in posts %}
   <article class="box media">
     <figure class="media-left">
@@ -10,9 +11,11 @@
     </figure>
       <div class="media-content">
         <div class="content">
-          <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+          <h2 class="is-primary">{{ post.title }}</h2>
             {{ post.text|linebreaksbr }}<br>
-              <small><a>Like</a> · <a>Reply</a> 投稿日: {{ post.published_date }}</small>
+            <p>　</p>
+              <small><p>{{ post.author }}さん　投稿日: {{ post.published_date }}</p></small>
+              <a href="{% url 'post_detail' pk=post.pk %}" class="button is-primary is-pulled-right">Detail</a>
             </p>
         </div>
       </div>

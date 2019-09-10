@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+ 
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+ 
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+ 
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+    {% load widget_tweaks %}
+    <p class="has-text-centered">username</p>
+    {{ form.username|add_class:"input is-primary" }}
+    <p class="has-text-centered">password</p>
+    {{ form.password|add_class:"input is-primary" }}
+    <p>　</p>
+<input type="submit" value="login" class="button is-primary is-fullwidth"/>
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+{% if user.is_authenticated %}
+{% else %}
+<a href="{% url 'accounts:signup' %}" class="has-text-centered">Sign up</a>
+{% endif %}
+{% endblock %}
