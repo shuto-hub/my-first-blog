@@ -122,19 +122,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static')
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 WHITENOISE_INDEX_FILE = True
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/staticfiles/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 try:
     from .local_settings import *
@@ -145,3 +145,6 @@ if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku
     django_heroku.settings(locals())
+
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
