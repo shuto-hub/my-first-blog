@@ -131,6 +131,9 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
