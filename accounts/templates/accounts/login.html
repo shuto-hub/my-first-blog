@@ -1,12 +1,55 @@
 {% extends 'admin/base.html' %}
 
 {% block content %}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="layout-default">
+    <section class="hero is-fullheight is-medium is-primary is-bold">
+    <p>　</p>
+    <p>　</p>
+    <p>　</p>
+    <p>　</p>
+    <h1 class="title is-1 has-text-centered is-spaced has-text-weight-bold">Reviews!</h1>
+        <div class="hero-body">
+            <div class="container">
+            <div class="columns is-centered">
+                <article class="card is-rounded">
+                <div class="card-content">
 <h1>Sign in</h1>
 <section class="common-form">
 <form method="post">
 {% csrf_token %}
-{{ form.as_p }}
-<button type="submit" class="submit">Log in</button>
+{% load widget_tweaks %}
+<p class="has-text-centered">username</p>
+{{ form.username|add_class:"input is-primary" }}
+<p class="has-text-centered">password</p>
+{{ form.password|add_class:"input is-primary" }}
+<p>　</p>
+<input type="submit" value="login" class="button is-primary is-medium is-fullwidth"/>
+<input type="hidden" name="next" value="{{ next }}" />
 </form>
+{% if user.is_authenticated %}
+{% else %}
+<a href="{% url 'accounts:create' %}" class="has-text-centered">Sign up</a>
+{% endif %}
 </section>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+</body>
+<div class="container">
+<header>
+<nav>
+<ul>
+</ul>
+</nav>
+</header>
+<div class="content">
+</div>
+</div>
 {% endblock %}
