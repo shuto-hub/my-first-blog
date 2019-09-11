@@ -23,7 +23,7 @@
     <p class="has-text-centered">password</p>
     {{ form.password|add_class:"input is-primary" }}
     <p>　</p>
-<input type="submit" value="login" class="button is-primary is-fullwidth"/>
+<input type="submit" value="login" class="button is-primary is-medium is-fullwidth"/>
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 {% if user.is_authenticated %}
