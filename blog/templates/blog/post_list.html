@@ -24,10 +24,14 @@
 <nav class="pagination is-centered" role="navigation" aria-label="pagination">
 {% if posts.has_previous %}
   <a class="pagination-previous" href="?page={{ posts.previous_page_number }}">Previous</a>
+{% else %}
+
 {% endif %}
 
 {% if posts.has_next %}
   <a class="pagination-next" href="?page={{ posts.next_page_number }}">Next</a>
+{% else %}
+
 {% endif %}
 
 <ul class="pagination-list">
