@@ -12,7 +12,7 @@ import requests
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
 from linebot.exceptions import LineBotApiError
-import os
+from django.conf import settings
 
 @login_required
 def post_list(request):
@@ -52,8 +52,8 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            LINE_ACCESS_TOKEN= os.environ["LINE_ACCESS_TOKEN"] # ラインアクセストークン
-            LINE_USER_ID= os.environ["LINE_USER_ID"] # ライン
+            LINE_ACCESS_TOKEN = settings.LINE_ACCESS_TOKEN # ラインアクセストークン
+            LINE_USER_ID = settings.LINE_USER_ID # ライン
             # LINE APIを定義。引数にアクセストークンを与える。
             line_bot_api = LineBotApi(LINE_ACCESS_TOKEN)
             text_message = (str(request.user) + "さんが投稿しました！今すぐ確認してみましょう！https://djangosht.herokuapp.com/")
