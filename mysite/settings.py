@@ -144,6 +144,7 @@ if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku
     django_heroku.settings(locals())
-
+    LINE_ACCESS_TOKEN = os.environ['LINE_ACCESS_TOKEN'] # ラインアクセストークン
+    LINE_USER_ID = os.environ['LINE_USER_ID'] # ライン
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
