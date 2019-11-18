@@ -8,6 +8,10 @@ from django.contrib.auth.models import User
 from . import forms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.response import TemplateResponse
+import requests
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
+from linebot.exceptions import LineBotApiError
 
 @login_required
 def post_list(request):
@@ -47,6 +51,19 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
+            LINE_ACCESS_TOKEN= "hoge" # ラインアクセストークン
+            LINE_USER_ID= "fuga" # ライン
+            # LINE APIを定義。引数にアクセストークンを与える。
+            line_bot_api = LineBotApi(LINE_ACCESS_TOKEN)
+            text_message = (str(request.user) + "さんが投稿しました！今すぐ確認してみましょう！https://djangosht.herokuapp.com/")
+            try:
+            # ラインユーザIDは配列で指定する。
+                line_bot_api.multicast(
+                [LINE_USER_ID], TextSendMessage(text=text_message)
+                )
+            except LineBotApiError as e:
+            # エラーが起こり送信できなかった場合
+                print(e)
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
